@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ender_syringe_gui"
+version = "0.0.1"
+description = "A GUI for controlling an Ender syringe pump."
+authors = [
+    { name="Alberto Gomez-Casado", email="albertogomcas@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+gui = [
+    "dearpygui>=1.10.0",
+    "pyserial>=3.5"
+]
+
+[tool.setuptools]
+packages = ["."]
+
