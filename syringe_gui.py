@@ -146,8 +146,8 @@ with dpg.window(label="", no_title_bar=True, pos=[0,0], width=600, height=550, n
 
     dpg.add_spacer(height=10)  # 10 pixels vertical spacing
     with dpg.group(horizontal=True):
-        dpg.add_button(label="Start", callback=start_callback, width=150, height=50)
-        dpg.add_button(label="Stop", callback=stop_callback, width=150, height=50)
+        start_btn = dpg.add_button(label="Start", callback=start_callback, width=150, height=50)
+        stop_btn = dpg.add_button(label="Stop", callback=stop_callback, width=150, height=50)
 
     dpg.add_spacer(height=10)
     dpg.add_separator()
@@ -158,6 +158,25 @@ with dpg.window(label="", no_title_bar=True, pos=[0,0], width=600, height=550, n
 
     with dpg.child_window(width=-1, height=90, border=True, tag="LogChild"):
         dpg.add_text("", tag="LogText", wrap=-1)  # empty at start
+
+    with dpg.theme() as start_theme:
+        with dpg.theme_component(dpg.mvButton):
+            dpg.add_theme_color(dpg.mvThemeCol_Button, (0, 100, 0))  # normal
+            dpg.add_theme_color(dpg.mvThemeCol_ButtonHovered, (0, 200, 0))  # hover
+            dpg.add_theme_color(dpg.mvThemeCol_ButtonActive, (0, 150, 0))  # active
+
+            dpg.bind_item_theme(start_btn, start_theme)
+
+    with dpg.theme() as stop_theme:
+        with dpg.theme_component(dpg.mvButton):
+            dpg.add_theme_color(dpg.mvThemeCol_Button, (100, 0, 0))  # normal
+            dpg.add_theme_color(dpg.mvThemeCol_ButtonHovered, (200, 0, 0))  # hover
+            dpg.add_theme_color(dpg.mvThemeCol_ButtonActive, (150, 0, 0))  # active
+
+            dpg.bind_item_theme(stop_btn, stop_theme)
+
+
+
 
 log("[INFO] GUI started")
 # Try connecting when the GUI starts
